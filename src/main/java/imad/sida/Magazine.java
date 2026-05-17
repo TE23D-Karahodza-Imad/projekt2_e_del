@@ -4,10 +4,10 @@ package imad.sida;
 // extends betyder att Magazine ärver allt från LibraryItem
 public class Magazine extends LibraryItem {
 
-    // egna variabler som bara tidningar har
-    int issueNumber; // vilket nummer av tidningen det är
-    String category;
-    int publishedYear; // vilket år den gavs ut
+    // private så att variablerna bara kan ändras inifrån klassen
+    private int issueNumber;
+    private String category;
+    private int publishedYear;
 
     public Magazine(String id, String title, int issueNumber, String category, int publishedYear, boolean isAvailable) {
         // super() anropar konstruktorn i LibraryItem (förälderklassen)
@@ -15,5 +15,16 @@ public class Magazine extends LibraryItem {
         this.issueNumber = issueNumber;
         this.category = category;
         this.publishedYear = publishedYear;
+    }
+
+    // getters för att hämta tidningens variabler
+    public int getIssueNumber() { return issueNumber; }
+    public String getCategory() { return category; }
+    public int getPublishedYear() { return publishedYear; }
+
+    // @Override betyder att vi skriver över toString från LibraryItem
+    @Override
+    public String toString() {
+        return super.toString() + " | Nummer: " + issueNumber + " | Kategori: " + category + " | År: " + publishedYear;
     }
 }
