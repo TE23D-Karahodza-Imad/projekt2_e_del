@@ -1,8 +1,8 @@
 // Imad Karahodza - klass för böcker, ärver från LibraryItem
 package imad.sida;
 
-// extends betyder att Book ärver allt från LibraryItem
-public class Book extends LibraryItem {
+// extends = ärver från LibraryItem, Comparable = kan sorteras på titel
+public class Book extends LibraryItem implements Comparable<Book> {
 
     // private så att variablerna bara kan ändras inifrån klassen
     private String author;
@@ -22,7 +22,12 @@ public class Book extends LibraryItem {
     public String getGenre() { return genre; }
     public int getPages() { return pages; }
 
-    // @Override betyder att vi skriver över toString från LibraryItem
+    // compareTo används av Collections.sort() för att sortera böcker på titel
+    @Override
+    public int compareTo(Book other) {
+        return this.title.compareTo(other.title);
+    }
+
     @Override
     public String toString() {
         return super.toString() + " | Författare: " + author + " | Genre: " + genre + " | Sidor: " + pages;

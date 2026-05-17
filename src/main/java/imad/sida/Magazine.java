@@ -1,8 +1,8 @@
 // Imad Karahodza - klass för tidningar, ärver från LibraryItem
 package imad.sida;
 
-// extends betyder att Magazine ärver allt från LibraryItem
-public class Magazine extends LibraryItem {
+// extends = ärver från LibraryItem, Comparable = kan sorteras på titel
+public class Magazine extends LibraryItem implements Comparable<Magazine> {
 
     // private så att variablerna bara kan ändras inifrån klassen
     private int issueNumber;
@@ -22,7 +22,12 @@ public class Magazine extends LibraryItem {
     public String getCategory() { return category; }
     public int getPublishedYear() { return publishedYear; }
 
-    // @Override betyder att vi skriver över toString från LibraryItem
+    // compareTo används av Collections.sort() för att sortera tidningar på titel
+    @Override
+    public int compareTo(Magazine other) {
+        return this.title.compareTo(other.title);
+    }
+
     @Override
     public String toString() {
         return super.toString() + " | Nummer: " + issueNumber + " | Kategori: " + category + " | År: " + publishedYear;
