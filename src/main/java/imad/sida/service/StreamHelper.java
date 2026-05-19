@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  * Hjälpklass med statiska metoder för stream-operationer på biblioteksdata.
  * Används för filtrering, sortering, räkning och mappning av böcker.
  *
- * @author Imad Karahodza
  */
 public class StreamHelper {
 

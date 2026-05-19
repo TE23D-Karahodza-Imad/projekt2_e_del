@@ -4,7 +4,6 @@ package imad.sida.model;
  * Representerar ett musikalbum i biblioteket.
  * Ärver från Media som i sin tur ärver från LibraryItem.
  *
- * @author Imad Karahodza
  */
 public class MusicAlbum extends Media implements Comparable<MusicAlbum> {
 

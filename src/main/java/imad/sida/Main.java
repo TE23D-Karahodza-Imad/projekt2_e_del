@@ -13,7 +13,6 @@ import java.util.Scanner;
  * Programmets startpunkt.
  * Hanterar all menynavigering och kopplar ihop alla klasser.
  *
- * @author Imad Karahodza
  */
 public class Main {
 

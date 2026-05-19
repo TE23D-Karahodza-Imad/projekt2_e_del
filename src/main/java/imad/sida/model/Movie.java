@@ -4,7 +4,6 @@ package imad.sida.model;
  * Representerar en film i biblioteket.
  * Ärver från Media som i sin tur ärver från LibraryItem.
  *
- * @author Imad Karahodza
  */
 public class Movie extends Media implements Comparable<Movie> {
 

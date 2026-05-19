@@ -14,7 +14,6 @@ import java.util.Collections;
  * Hanterar all kommunikation mot servern via HTTP (GET, POST, DELETE).
  * Omvandlar JSON-svar till Java-objekt och skickar objekt som JSON.
  *
- * @author Imad Karahodza
  */
 public class LibraryClient {
 

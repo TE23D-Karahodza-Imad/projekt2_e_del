@@ -4,7 +4,6 @@ package imad.sida.model;
  * Representerar en bok i biblioteket.
  * Ärver id, titel och tillgänglighet från LibraryItem.
  *
- * @author Imad Karahodza
  */
 public class Book extends LibraryItem implements Comparable<Book> {
 

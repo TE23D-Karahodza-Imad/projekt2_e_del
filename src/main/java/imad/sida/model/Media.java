@@ -4,7 +4,6 @@ package imad.sida.model;
  * Abstrakt basklass för alla medietyper: spel, musikalbum och film.
  * Ärver id, titel och tillgänglighet från LibraryItem.
  *
- * @author Imad Karahodza
  */
 public abstract class Media extends LibraryItem {
 

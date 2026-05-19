@@ -4,7 +4,6 @@ package imad.sida.model;
  * Abstrakt basklass för alla föremål i biblioteket.
  * Book, Magazine och Media ärver från denna klass.
  *
- * @author Imad Karahodza
  */
 public class LibraryItem {
 

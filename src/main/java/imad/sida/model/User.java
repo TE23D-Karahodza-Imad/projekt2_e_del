@@ -3,7 +3,6 @@ package imad.sida.model;
 /**
  * Representerar en registrerad användare i biblioteket.
  *
- * @author Imad Karahodza
  */
 public class User implements Comparable<User> {
 

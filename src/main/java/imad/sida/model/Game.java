@@ -4,7 +4,6 @@ package imad.sida.model;
  * Representerar ett spel i biblioteket.
  * Ärver från Media som i sin tur ärver från LibraryItem.
  *
- * @author Imad Karahodza
  */
 public class Game extends Media implements Comparable<Game> {
 

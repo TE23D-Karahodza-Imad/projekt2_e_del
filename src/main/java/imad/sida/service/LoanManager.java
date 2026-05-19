@@ -13,7 +13,6 @@ import java.util.ArrayList;
  * Hanterar alla lån i biblioteket.
  * Implementerar Storable — sparar och läser lån från loans.txt.
  *
- * @author Imad Karahodza
  */
 public class LoanManager implements Storable {
 

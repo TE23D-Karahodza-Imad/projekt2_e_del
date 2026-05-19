@@ -6,7 +6,6 @@ import java.time.LocalDate;
  * Representerar ett enskilt lån — kopplar en användare till ett lånat objekt.
  * Sparas som en kommaseparerad rad i loans.txt.
  *
- * @author Imad Karahodza
  */
 public class Loan {
 

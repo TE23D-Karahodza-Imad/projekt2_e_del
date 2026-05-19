@@ -4,7 +4,6 @@ package imad.sida.model;
  * Representerar en avstängd användare.
  * Kopplar ett eget id till användarens id i User-klassen.
  *
- * @author Imad Karahodza
  */
 public class SuspendedUser implements Comparable<SuspendedUser> {
 

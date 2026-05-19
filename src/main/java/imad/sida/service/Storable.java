@@ -4,7 +4,6 @@ package imad.sida.service;
  * Gränssnitt för klasser som kan spara och läsa data från fil.
  * LoanManager implementerar detta interface.
  *
- * @author Imad Karahodza
  */
 public interface Storable {
 
