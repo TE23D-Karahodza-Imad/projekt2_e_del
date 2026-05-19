@@ -1,5 +1,6 @@
-// Imad Karahodza - hjälpklass med stream-operationer för sökning och filtrering
-package imad.sida;
+package imad.sida.service;
+
+import imad.sida.model.Book;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,26 +8,27 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * StreamHelper innehåller statiska metoder som använder Java Streams
- * för att filtrera, sortera, räkna och mappa biblioteksdata.
+ * Hjälpklass med statiska metoder för stream-operationer på biblioteksdata.
+ * Används för filtrering, sortering, räkning och mappning av böcker.
+ *
+ * @author Imad Karahodza
  */
 public class StreamHelper {
 
     /**
-     * Filtrerar böcker på genre.
+     * Filtrerar böcker på genre med stream filter().
      * @param books  listan med böcker att filtrera
      * @param genre  genren att filtrera på
-     * @return lista med böcker som matchar genren
+     * @return lista med matchande böcker
      */
     public static List<Book> filterByGenre(ArrayList<Book> books, String genre) {
-        // stream + filter plockar ut bara de böcker som matchar genren
         return books.stream()
                 .filter(b -> b.getGenre().equalsIgnoreCase(genre))
                 .collect(Collectors.toList());
     }
 
     /**
-     * Filtrerar böcker på författare.
+     * Filtrerar böcker på författare med stream filter().
      * @param books   listan med böcker att filtrera
      * @param author  författaren att filtrera på
      * @return lista med böcker av den författaren
@@ -38,19 +40,18 @@ public class StreamHelper {
     }
 
     /**
-     * Sorterar böcker alfabetiskt på författarnamn.
+     * Sorterar böcker alfabetiskt på författarnamn med stream sorted().
      * @param books  listan med böcker
      * @return sorterad lista
      */
     public static List<Book> sortByAuthor(ArrayList<Book> books) {
-        // sorted + Comparator.comparing sorterar på det fält man väljer
         return books.stream()
                 .sorted(Comparator.comparing(Book::getAuthor))
                 .collect(Collectors.toList());
     }
 
     /**
-     * Sorterar böcker alfabetiskt på genre.
+     * Sorterar böcker alfabetiskt på genre med stream sorted().
      * @param books  listan med böcker
      * @return sorterad lista
      */
@@ -61,27 +62,23 @@ public class StreamHelper {
     }
 
     /**
-     * Räknar hur många böcker en specifik författare har i systemet.
-     * Använder stream-metoden count().
+     * Räknar hur många böcker en specifik författare har med stream count().
      * @param books   listan med böcker
      * @param author  författarens namn
-     * @return antal böcker av den författaren
+     * @return antal böcker
      */
     public static long countByAuthor(ArrayList<Book> books, String author) {
-        // count() räknar antalet element som passerar filtret
         return books.stream()
                 .filter(b -> b.getAuthor().equalsIgnoreCase(author))
                 .count();
     }
 
     /**
-     * Mappar böckerna och returnerar bara deras titlar.
-     * Använder stream-metoden map().
+     * Mappar böckerna till bara deras titlar med stream map().
      * @param books  listan med böcker
      * @return lista med bara titlarna
      */
     public static List<String> getAllTitles(ArrayList<Book> books) {
-        // map() omvandlar varje Book-objekt till bara dess titel-sträng
         return books.stream()
                 .map(Book::getTitle)
                 .collect(Collectors.toList());
