@@ -21,6 +21,9 @@ public class LibraryItem {
     public String getTitle() { return title; }
     public boolean getIsAvailable() { return isAvailable; }
 
+    // setter för isAvailable — används av LoanManager när man lånar/lämnar tillbaka
+    public void setIsAvailable(boolean isAvailable) { this.isAvailable = isAvailable; }
+
     // toString skriver ut objektet som en sträng
     @Override
     public String toString() {
