@@ -281,4 +281,91 @@ public class LibraryClient {
     public boolean deleteSuspendedUser(String id) {
         return deleteById("/suspended", id);
     }
+
+    // tar bort ett mediaobjekt från servern med hjälp av id
+    public boolean deleteMedia(String id) {
+        return deleteById("/media", id);
+    }
+
+    // ==================== FETCH MEDIA ====================
+
+    /**
+     * Hämtar alla mediaobjekt från servern.
+     * Använder polymorfism — skapar rätt subklass (Game, MusicAlbum, Movie)
+     * beroende på "type"-fältet i JSON.
+     * @return lista med Media-objekt
+     */
+    public ArrayList<Media> fetchMedia() {
+        ArrayList<Media> mediaList = new ArrayList<>();
+        String json = fetchJson("/media");
+        if (json.isEmpty()) return mediaList;
+
+        String[] objects = json.split("\\},\\{");
+        for (String obj : objects) {
+            obj = obj.replace("[", "").replace("]", "").replace("{", "").replace("}", "");
+            String id       = getString(obj, "id");
+            String type     = getString(obj, "type");
+            String title    = getString(obj, "title");
+            boolean available = getBoolean(obj, "isAvailable");
+
+            if (id.isEmpty()) continue;
+
+            // polymorfism — skapar rätt subklass baserat på type-fältet
+            switch (type) {
+                case "game" -> {
+                    String genre = getString(obj, "genre");
+                    int age = getInt(obj, "age");
+                    mediaList.add(new Game(id, title, genre, age, available));
+                }
+                case "music_album" -> {
+                    String artist = getString(obj, "artist");
+                    mediaList.add(new MusicAlbum(id, artist, title, available));
+                }
+                case "movie" -> {
+                    String genre = getString(obj, "genre");
+                    int minutes = getInt(obj, "minutes");
+                    mediaList.add(new Movie(id, title, genre, minutes, available));
+                }
+                default -> System.out.println("Okänd mediatyp: " + type);
+            }
+        }
+        System.out.println(mediaList.size() + " mediaobjekt hämtades från servern.");
+        return mediaList;
+    }
+
+    // hittar ett mediaobjekt via titel, returnerar null om det inte finns
+    public Media findMediaByTitle(ArrayList<Media> mediaList, String title) {
+        for (Media m : mediaList) {
+            if (m.getTitle().equalsIgnoreCase(title)) return m;
+        }
+        return null;
+    }
+
+    // ==================== LÄGG TILL MEDIA ====================
+
+    /** Lägger till ett spel på servern via POST. */
+    public boolean addGame(Game game) {
+        String json = "{\"type\":\"game\",\"title\":\"" + game.getTitle() +
+                "\",\"genre\":\"" + game.getGenre() +
+                "\",\"age\":" + game.getAge() +
+                ",\"isAvailable\":true}";
+        return postJson("/media", json);
+    }
+
+    /** Lägger till ett musikalbum på servern via POST. */
+    public boolean addMusicAlbum(MusicAlbum album) {
+        String json = "{\"type\":\"music_album\",\"artist\":\"" + album.getArtist() +
+                "\",\"title\":\"" + album.getTitle() +
+                "\",\"isAvailable\":true}";
+        return postJson("/media", json);
+    }
+
+    /** Lägger till en film på servern via POST. */
+    public boolean addMovie(Movie movie) {
+        String json = "{\"type\":\"movie\",\"title\":\"" + movie.getTitle() +
+                "\",\"genre\":\"" + movie.getGenre() +
+                "\",\"minutes\":" + movie.getMinutes() +
+                ",\"isAvailable\":true}";
+        return postJson("/media", json);
+    }
 }
