@@ -26,7 +26,7 @@ public class Main {
     static LoanManager   loanManager = new LoanManager();
     static Scanner       scanner     = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { 
         System.out.println("=== LibSys A-nivå ===");
 
         books     = client.fetchBooks();
@@ -35,7 +35,7 @@ public class Main {
         suspended = client.fetchSuspendedUsers();
         mediaList = client.fetchMedia();
 
-        boolean running = true;
+        boolean running = true; 
         while (running) {
             printMenu();
             String val = scanner.nextLine().trim();

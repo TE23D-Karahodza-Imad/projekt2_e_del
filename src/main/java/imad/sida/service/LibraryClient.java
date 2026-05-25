@@ -18,9 +18,7 @@ import java.util.Collections;
 public class LibraryClient {
 
     /** Serverns bas-URL. */
-    private static final String BASE_URL = "http://10.151.168.5:3109";
-
-    /**
+private static final String BASE_URL = "http://127.0.0.1:3109";    /**
      * Hämtar JSON-text från servern via GET.
      * @param endpoint API-ändpunkten, ex "/books"
      * @return JSON-sträng eller tom sträng vid fel
@@ -100,12 +98,24 @@ public class LibraryClient {
 
     /** Plockar ut ett strängvärde från JSON, ex "title":"Harry Potter". */
     private String getString(String json, String key) {
-        String search = "\"" + key + "\":\"";
+        String search = "\"" + key + "\":";
         int start = json.indexOf(search);
         if (start == -1) return "";
         start += search.length();
-        int end = json.indexOf("\"", start);
-        return end == -1 ? "" : json.substring(start, end);
+        // Hoppa över eventuella mellanslag efter kolon
+        while (start < json.length() && json.charAt(start) == ' ') start++;
+        if (start >= json.length()) return "";
+        if (json.charAt(start) == '"') {
+            // Strängvärde med citattecken
+            start++;
+            int end = json.indexOf("\"", start);
+            return end == -1 ? "" : json.substring(start, end);
+        } else {
+            // Numeriskt id utan citattecken — läs som sträng
+            int end = json.indexOf(",", start);
+            if (end == -1) end = json.indexOf("}", start);
+            return end == -1 ? "" : json.substring(start, end).trim();
+        }
     }
 
     /** Plockar ut ett heltal från JSON, ex "pages":450. */

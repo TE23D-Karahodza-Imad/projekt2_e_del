@@ -17,7 +17,7 @@ public class Book extends LibraryItem implements Comparable<Book> {
     private int pages;
 
     /**
-     * Skapar en ny bok med validering av indata.
+     * Skapar en ny bok med validering av indata. 
      * @param id          unikt id
      * @param title       titel
      * @param author      författare
@@ -31,11 +31,11 @@ public class Book extends LibraryItem implements Comparable<Book> {
         this.author = (author != null && !author.isEmpty()) ? author : "Okänd";
         this.genre  = (genre  != null && !genre.isEmpty())  ? genre  : "Okänd";
         // validering — sidor får inte vara negativt
-        this.pages  = (pages >= 0) ? pages : 0;
+        this.pages  = (pages >= 0) ? pages : 0; // om ogiltigt, sätt till 0
     }
 
-    /** @return bokens författare */
-    public String getAuthor() { return author; }
+    /** @return bokens författare */ 
+    public String getAuthor() { return author; }  
 
     /** @return bokens genre */
     public String getGenre()  { return genre; }

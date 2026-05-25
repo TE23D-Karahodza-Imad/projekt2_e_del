@@ -1,0 +1,30 @@
+{
+  "books": [
+    {
+      "title": "Imad",
+      "author": "ds",
+      "genre": "ds",
+      "pages": 200,
+      "isAvailable": true,
+      "id": "1"
+    },
+    {
+      "title": "Imad Karahodza",
+      "author": "Imads farsa",
+      "genre": "Horror",
+      "pages": 299,
+      "isAvailable": true,
+      "id": "tteJjPK"
+    }
+  ],
+  "magazines": [],
+  "users": [
+    {
+      "name": "Imad Karahodza",
+      "email": "imadmali@boom",
+      "id": 1
+    }
+  ],
+  "suspended": [],
+  "media": []
+}
